@@ -1,0 +1,74 @@
+{
+  "_meta": {
+    "name": "drb-subset-5",
+    "description": "Five-task smoke subset adapted from DeepResearch Bench (https://deepresearch-bench.github.io/) and the user's own anti-bubble research domain. Mixed EN/JA. Used for v0 smoke testing of the orchestrator end-to-end, NOT as a publication-grade benchmark — that requires the full 100/132-task DRB/DRB-II suites.",
+    "fields_per_task": ["id", "lang", "domain", "query", "expected_aspects"]
+  },
+  "tasks": [
+    {
+      "id": "drb5-01",
+      "lang": "en",
+      "domain": "AI / Recommender Systems",
+      "query": "What is the state of anti-filter-bubble research in deep-research agents in 2026? Cover formal definitions, diversity-aware retrieval, evaluation benchmarks, and known limitations.",
+      "expected_aspects": [
+        "formal definition of filter bubble / echo chamber",
+        "diversity metrics (MMR, intra-list diversity, calibrated relevance)",
+        "evaluation benchmarks (DeepResearch Bench, AstaBench, BrowseComp)",
+        "empirical evidence of bubble effects in recommender systems",
+        "open problems and current limitations"
+      ]
+    },
+    {
+      "id": "drb5-02",
+      "lang": "ja",
+      "domain": "AI / Agentic Systems",
+      "query": "2026年現在、ディープリサーチ・エージェントの主要なオープンソース実装を比較してください。アーキテクチャ（再帰 vs supervisor vs flat）、ライセンス、評価指標、得手不得手を整理してください。",
+      "expected_aspects": [
+        "GPT Researcher / LangChain open_deep_research / STORM / Together",
+        "アーキテクチャの違い (recursion vs supervisor vs two-stage)",
+        "ライセンス (MIT / Apache / AGPL etc)",
+        "評価ベンチマーク (DRB, AstaBench)",
+        "それぞれの得手不得手"
+      ]
+    },
+    {
+      "id": "drb5-03",
+      "lang": "en",
+      "domain": "Information Retrieval",
+      "query": "How do search APIs Exa, Tavily, Linkup, and Perplexity Sonar compare in 2026 in terms of latency, factuality, pricing, and access to academic/SEC/PubMed sources?",
+      "expected_aspects": [
+        "Exa latency / structured outputs",
+        "Tavily search-and-cite",
+        "Linkup SimpleQA leadership",
+        "Perplexity Sonar variants (sonar / sonar-pro / sonar-deep-research)",
+        "what each cannot reach (e.g., Sonar cannot reach SEC/PubMed)"
+      ]
+    },
+    {
+      "id": "drb5-04",
+      "lang": "en",
+      "domain": "ML / Personalization",
+      "query": "Survey recent (2025-2026) research on personalized LLM agents that BALANCE preference following with discovery. What architectures, training signals, and evaluation protocols exist?",
+      "expected_aspects": [
+        "preference-vs-discovery tradeoff papers",
+        "multi-objective training (productivity / proactivity / personalization)",
+        "long-horizon preference following benchmarks",
+        "persistent memory + user profile architectures",
+        "limitations at small N (cold start)"
+      ]
+    },
+    {
+      "id": "drb5-05",
+      "lang": "ja",
+      "domain": "学術検索",
+      "query": "ArXiv、OpenAlex、Semantic Scholar、Ai2 Asta、PubMed をリサーチエージェントから使う場合、それぞれの強み・カバレッジ・API 設計・MCP サーバの有無を整理してください。",
+      "expected_aspects": [
+        "ArXiv (preprint / カテゴリ)",
+        "OpenAlex (250M+ works, free API)",
+        "Semantic Scholar (200M+ index)",
+        "Ai2 Asta (108M abstracts + 12M full-text, MCP endpoint)",
+        "PubMed (biomedical)"
+      ]
+    }
+  ]
+}

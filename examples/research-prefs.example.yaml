@@ -1,0 +1,67 @@
+# Katala Research — default preferences
+# Copy to ~/.agents/research-prefs.yaml and edit.
+
+language: ja
+output-language: ja
+require-japanese-summary: true
+
+default-strategy: iterative       # iterative | supervisor | answer | wiki (v0: iterative only)
+citation-style: inline             # apa7 | inline | footnote | none
+
+preferred-sources:
+  - openalex.org
+  - arxiv.org
+  - semanticscholar.org
+  - asta.allen.ai
+  - github.com
+
+banned-domains:
+  - medium.com
+  - quora.com
+  - reddit.com
+
+default-breadth: 4
+default-depth: 2
+
+# Backend chains
+# search-backend-order: web search, first available wins (fallback chain).
+search-backend-order: [searxng, stub]
+
+# academic-sources: all configured Sources are called in parallel and merged
+# (not fallback — they complement each other).
+# Available: arxiv, openalex, openreview, semantic_scholar, inbox
+academic-sources: [arxiv, openalex, semantic_scholar, inbox]
+
+# read-backend-order: fetch + clean URL, first non-error wins.
+read-backend-order: [jina, defuddle, stub]
+# Update to the latest stable Anthropic model id as models evolve.
+llm-default: claude-opus-4-5
+llm-budget-cap-usd: 5.00
+
+# SearXNG endpoint (start via vendor/searxng-docker/)
+searxng:
+  url: http://localhost:8080
+  format: json
+
+# Creativity / anti-bubble layer (see src/katala_research/creativity/score.py)
+creativity:
+  weights:                  # Score(z) = α·Relevance + β·Discovery − γ·Risk
+    relevance: 0.50
+    discovery: 0.35
+    risk:      0.15
+  gates:                    # hard reject if any fails
+    topical_fit_min:   0.30
+    content_gap_max:   0.50
+    source_risk_max:   0.60
+    reading_cost_max:  0.70
+  selector:
+    discovery_floor_ratio: 0.25   # ≥25% of selected must clear Discovery threshold
+    discovery_threshold:   0.45
+    domain_cap_ratio:      0.40   # ≤40% from any one domain
+    paradigm_cap_ratio:    0.50   # ≤50% from any one paradigm cluster
+    must_include_counter:  true
+  reflection:
+    gap_threshold: 0.40           # if learning coverage gap > this, force a far query
+  complexity:
+    K0_default: 0.50              # mid-complexity preferred
+    sigma_default: 0.30

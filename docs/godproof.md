@@ -1,0 +1,242 @@
+# `kr godproof` — proof-frontier mode
+
+A local-only run that records the frontier of the classical arguments for the
+existence of God: which premises are assumed, which counterarguments answer them,
+and which gates remain unsatisfied. It does not claim that God is proven.
+
+Sources are recorded as URLs and titles only; no passage is reproduced verbatim.
+
+## Output files
+
+`kr godproof` is a local-only proof-frontier run. It writes:
+- `wisdom-map.json` — sources, premises, argument families, and counterarguments
+- `target-concepts.json` — proof target and comparator concept registry
+- `definition-checks.json` — target God concept validation gates
+- `wisdom-corpus.json` — classified human-wisdom entries gathered so far
+- `coverage-matrix.json` — covered, thin, and missing wisdom domains
+- `human-wisdom-primary-source-seed-ledger.json` — primary-source locators for broader wisdom intake
+- `human-wisdom-primary-source-seed-checks.json` — checks that primary sources remain seed-only
+- `human-wisdom-primary-source-extraction-queue.json` — minimized extraction queue for primary sources
+- `human-wisdom-primary-source-extraction-checks.json` — checks that primary-source extraction is unmaterialized
+- `human-wisdom-primary-source-summary-candidates.json` — paraphrase-only source summary candidates
+- `human-wisdom-primary-source-summary-candidate-checks.json` — checks that summary candidates are not corpus entries
+- `human-wisdom-counterpressure-edge-proposals.json` — candidate edges from summaries to proof pressure
+- `human-wisdom-counterpressure-edge-checks.json` — checks that candidate edges are not proof-graph evidence
+- `human-wisdom-counterpressure-edge-review-queue.json` — review queue for candidate counterpressure edges
+- `human-wisdom-counterpressure-edge-review-checks.json` — checks that edge review is not materialization authority
+- `human-wisdom-counterpressure-edge-review-rubric.json` — programmable rubric for edge review
+- `human-wisdom-counterpressure-edge-review-rubric-checks.json` — checks that the rubric is not an applied review
+- `human-wisdom-counterpressure-edge-review-decisions.json` — defer-only edge review decisions
+- `human-wisdom-counterpressure-edge-review-decision-checks.json` — checks that defer decisions are not proof evidence
+- `human-wisdom-counterpressure-edge-resolution-packet.json` — open locator and provenance resolution tasks
+- `human-wisdom-counterpressure-edge-resolution-checks.json` — checks that resolution remains prerequisite work
+- `human-wisdom-counterpressure-edge-evidence-request-queue.json` — queued metadata requests for edge evidence
+- `human-wisdom-counterpressure-edge-evidence-request-checks.json` — checks that evidence requests are not fetched evidence
+- `human-wisdom-counterpressure-edge-evidence-acquisition-manifest.json` — planned metadata acquisition items
+- `human-wisdom-counterpressure-edge-evidence-acquisition-checks.json` — checks that acquisition is unexecuted
+- `human-wisdom-counterpressure-edge-metadata-receipt-schema.json` — metadata receipt templates for acquisition results
+- `human-wisdom-counterpressure-edge-metadata-receipt-checks.json` — checks that receipt templates are not materialized evidence
+- `human-wisdom-counterpressure-edge-metadata-receipt-review-queue.json` — review queue for metadata receipts
+- `human-wisdom-counterpressure-edge-metadata-receipt-review-checks.json` — checks that receipt review is unperformed
+- `human-wisdom-counterpressure-edge-metadata-receipt-review-rubric.json` — programmable rubric for metadata receipt review
+- `human-wisdom-counterpressure-edge-metadata-receipt-review-rubric-checks.json` — checks that receipt rubric is not applied
+- `human-wisdom-counterpressure-edge-metadata-receipt-review-decisions.json` — defer-only receipt review decisions
+- `human-wisdom-counterpressure-edge-metadata-receipt-review-decision-checks.json` — checks that receipt decisions approve nothing
+- `human-wisdom-counterpressure-edge-metadata-receipt-resolution-packet.json` — open receipt metadata resolution tasks
+- `human-wisdom-counterpressure-edge-metadata-receipt-resolution-checks.json` — checks that receipt resolution is prerequisite work
+- `human-wisdom-counterpressure-edge-metadata-receipt-evidence-request-queue.json` — queued receipt metadata requests
+- `human-wisdom-counterpressure-edge-metadata-receipt-evidence-request-checks.json` — checks that receipt metadata requests are not fetched
+- `human-wisdom-counterpressure-edge-metadata-receipt-acquisition-manifest.json` — planned receipt metadata acquisition items
+- `human-wisdom-counterpressure-edge-metadata-receipt-acquisition-checks.json` — checks that receipt acquisition is unexecuted
+- `human-wisdom-counterpressure-edge-metadata-receipt-acquisition-hash-runbook.json` — receipt metadata acquisition and hash command templates
+- `human-wisdom-counterpressure-edge-metadata-receipt-acquisition-hash-runbook-checks.json` — checks that receipt hash commands are not executed
+- `human-wisdom-counterpressure-edge-metadata-receipt-authorization-packet.json` — candidate authorization blockers for receipt metadata acquisition
+- `human-wisdom-counterpressure-edge-metadata-receipt-authorization-checks.json` — checks that receipt fetch and hash remain unauthorized
+- `human-wisdom-counterpressure-edge-metadata-receipt-authorization-review-queue.json` — review queue for receipt metadata authorization blockers
+- `human-wisdom-counterpressure-edge-metadata-receipt-authorization-review-checks.json` — checks that authorization review remains unperformed
+- `human-wisdom-intake-roadmap.json` — open-ended intake lanes beyond current coverage
+- `human-wisdom-intake-checks.json` — checks that exhaustive human wisdom is not claimed
+- `proof-graph.json` — machine-readable proof-search graph
+- `modal-derivation.json` — encoded S5 modal bridge derivation
+- `modal-validity-checks.json` — local structural validation of the modal bridge
+- `modal-consistency-checks.json` — finite model and modal-collapse sanity checks
+- `ontological-soundness-dossier.json` — possibility-premise support, objections, and parody tests
+- `ontological-soundness-checks.json` — contested soundness checks that still block proof claim
+- `ontological-soundness-parody-discriminator-matrix.json` — discriminator rows for parody pressure
+- `ontological-soundness-parody-discriminator-checks.json` — checks that parody discriminators remain contested
+- `ontological-soundness-bad-god-discharge-criteria.json` — unresolved requirements for bad-god parody discharge
+- `ontological-soundness-bad-god-discharge-checks.json` — checks that bad-god discharge is not promoted
+- `ontological-soundness-bad-god-discharge-task-queue.json` — queued tasks for bad-god discharge requirements
+- `ontological-soundness-bad-god-discharge-task-checks.json` — checks that bad-god tasks are unexecuted
+- `ontological-soundness-bad-god-task-dependency-graph.json` — dependency ordering for bad-god tasks
+- `ontological-soundness-bad-god-task-dependency-checks.json` — checks that dependency graph is not proof
+- `ontological-soundness-bad-god-evil-hiddenness-pressure-matrix.json` — pressure rows for bad-god first task
+- `ontological-soundness-bad-god-evil-hiddenness-pressure-checks.json` — checks that pressure remains open
+- `ontological-soundness-bad-god-evil-hiddenness-sufficiency-task-queue.json` — queued tasks for open sufficiency tests
+- `ontological-soundness-bad-god-evil-hiddenness-sufficiency-task-checks.json` — checks that sufficiency tasks remain unexecuted
+- `ontological-soundness-bad-god-evidential-probability-pressure-task-scaffold.json` — evaluation scaffold for the first sufficiency task
+- `ontological-soundness-bad-god-evidential-probability-pressure-task-checks.json` — checks that the scaffold is not proof
+- `ontological-soundness-bad-god-evidential-prior-sensitivity-grid.json` — normalized prior profiles for the priors lane
+- `ontological-soundness-bad-god-evidential-prior-sensitivity-checks.json` — checks that prior profiles are not executed proof
+- `ontological-soundness-bad-god-evidential-likelihood-sensitivity-grid.json` — likelihood interval cells for the likelihoods lane
+- `ontological-soundness-bad-god-evidential-likelihood-sensitivity-checks.json` — checks that likelihood projections remain unexecuted
+- `ontological-soundness-bad-god-evidential-response-cost-grid.json` — response penalty intervals for the response-cost lane
+- `ontological-soundness-bad-god-evidential-response-cost-checks.json` — checks that response-cost projections remain unexecuted
+- `ontological-soundness-bad-god-evidential-rival-comparison-grid.json` — rival likelihood rows for the rival-comparison lane
+- `ontological-soundness-bad-god-evidential-rival-comparison-checks.json` — checks that rival comparison remains unexecuted
+- `ontological-soundness-bad-god-evidential-probability-execution-packet.json` — ordered execution packet for evidential probability lanes
+- `ontological-soundness-bad-god-evidential-probability-execution-checks.json` — checks that the execution packet is not run proof
+- `ontological-soundness-bad-god-evidential-posterior-projection-results.json` — candidate posterior projections for evidential probability pressure
+- `ontological-soundness-bad-god-evidential-posterior-projection-checks.json` — checks that posterior projections remain contested
+- `ontological-soundness-bad-god-evidential-projection-outcome-review.json` — outcome review for candidate projection pressure
+- `ontological-soundness-bad-god-evidential-projection-outcome-checks.json` — checks that outcome review remains non-proof
+- `ontological-soundness-bad-god-evidential-projection-remediation-plan.json` — queued remediation plan for projection outcome risks
+- `ontological-soundness-bad-god-evidential-projection-remediation-checks.json` — checks that remediation remains unexecuted non-proof work
+- `ontological-soundness-bad-god-evidential-calibration-source-registry.json` — source-family registry for calibration remediation
+- `ontological-soundness-bad-god-evidential-calibration-source-checks.json` — checks that calibration sources are scoped but not ingested proof
+- `ontological-soundness-bad-god-evidential-calibration-source-acquisition-manifest.json` — queued acquisition manifest for calibration sources
+- `ontological-soundness-bad-god-evidential-calibration-source-acquisition-checks.json` — checks that acquisition remains unfetched non-proof work
+- `ontological-soundness-bad-god-evidential-calibration-source-batch-plan.json` — auditable batch plan for calibration source acquisition
+- `ontological-soundness-bad-god-evidential-calibration-source-batch-checks.json` — checks that source batches remain unexecuted
+- `ontological-soundness-bad-god-evidential-calibration-source-seed-catalog.json` — verified seed URLs for calibration source acquisition
+- `ontological-soundness-bad-god-evidential-calibration-source-seed-checks.json` — checks that seed URLs remain unfetched non-proof work
+- `ontological-soundness-bad-god-evidential-calibration-source-eligibility-matrix.json` — pre-fetch gate classification for seed sources
+- `ontological-soundness-bad-god-evidential-calibration-source-eligibility-checks.json` — checks that eligibility remains unscored non-proof work
+- `ontological-soundness-bad-god-evidential-calibration-source-retrieval-runbook.json` — fetch, hash, and log templates for eligible sources
+- `ontological-soundness-bad-god-evidential-calibration-source-retrieval-checks.json` — checks that retrieval remains unexecuted non-proof work
+- `ontological-soundness-bad-god-evidential-calibration-source-retrieval-log-schema.json` — required retrieval log schema and hash fields
+- `ontological-soundness-bad-god-evidential-calibration-source-retrieval-log-checks.json` — checks that retrieval logs remain unmaterialized
+- `ontological-soundness-bad-god-evidential-calibration-source-retrieval-dry-run-ledger.json` — pre-execution audit of retrieval command wiring
+- `ontological-soundness-bad-god-evidential-calibration-source-retrieval-dry-run-checks.json` — checks that dry-run retrieval remains unexecuted
+- `ontological-soundness-bad-god-evidential-calibration-source-quality-rubric.json` — post-fetch source quality scoring rubric
+- `ontological-soundness-bad-god-evidential-calibration-source-quality-checks.json` — checks that source quality remains unscored
+- `ontological-soundness-bad-god-evidential-calibration-source-quality-score-ledger-schema.json` — schema for post-fetch source quality score ledger
+- `ontological-soundness-bad-god-evidential-calibration-source-quality-score-ledger-checks.json` — checks that quality score ledger remains unscored
+- `ontological-soundness-bad-god-evidential-calibration-source-quality-score-dry-run-ledger.json` — dry-run ledger for source quality scoring
+- `ontological-soundness-bad-god-evidential-calibration-source-quality-score-dry-run-checks.json` — checks that dry-run quality scoring remains unexecuted
+- `ontological-soundness-bad-god-evidential-calibration-source-quality-score-readiness-gate.json` — readiness gate blocking quality scoring until source content exists
+- `ontological-soundness-bad-god-evidential-calibration-source-quality-score-readiness-checks.json` — checks that quality scoring remains blocked before retrieval
+- `ontological-soundness-bad-god-evidential-calibration-source-content-materialization-packet.json` — pre-execution packet for source content, hash, and retrieval log materialization
+- `ontological-soundness-bad-god-evidential-calibration-source-content-materialization-checks.json` — checks that source content materialization remains unexecuted
+- `ontological-soundness-bad-god-evidential-calibration-source-content-materialization-batch-plan.json` — batch plan for source content materialization
+- `ontological-soundness-bad-god-evidential-calibration-source-content-materialization-batch-checks.json` — checks that materialization batches remain unexecuted
+- `ontological-soundness-bad-god-evidential-calibration-source-content-materialization-authorization-packet.json` — authorization packet blocking network materialization until approval
+- `ontological-soundness-bad-god-evidential-calibration-source-content-materialization-authorization-checks.json` — checks that network materialization remains unauthorized
+- `ontological-soundness-bad-god-evidential-calibration-source-content-materialization-authorization-review-queue.json` — review queue for materialization authorization blockers
+- `ontological-soundness-bad-god-evidential-calibration-source-content-materialization-authorization-review-checks.json` — checks that materialization authorization review remains unperformed
+- `ontological-soundness-bad-god-evidential-calibration-source-content-materialization-authorization-review-rubric.json` — rubric for materialization authorization review
+- `ontological-soundness-bad-god-evidential-calibration-source-content-materialization-authorization-review-rubric-checks.json` — checks that authorization rubric remains unapplied
+- `ontological-soundness-bad-god-evidential-calibration-source-content-materialization-authorization-review-decisions.json` — defer-only decisions for materialization authorization review
+- `ontological-soundness-bad-god-evidential-calibration-source-content-materialization-authorization-review-decision-checks.json` — checks that authorization decisions deny network retrieval
+- `ontological-soundness-bad-god-evidential-calibration-source-content-materialization-authorization-review-resolution-packet.json` — open prerequisite-resolution tasks for deferred authorization decisions
+- `ontological-soundness-bad-god-evidential-calibration-source-content-materialization-authorization-review-resolution-checks.json` — checks that authorization resolution remains open and non-proving
+- `ontological-soundness-bad-god-evidential-calibration-source-content-materialization-authorization-operator-approval-request.json` — request packet for the missing operator approval reference
+- `ontological-soundness-bad-god-evidential-calibration-source-content-materialization-authorization-operator-approval-checks.json` — checks that operator approval is requested but not granted
+- `ontological-soundness-bad-god-evidential-calibration-source-content-materialization-authorization-terms-rate-limit-review.json` — pending terms and rate-limit review for materialization batches
+- `ontological-soundness-bad-god-evidential-calibration-source-content-materialization-authorization-terms-rate-limit-checks.json` — checks that terms and rate-limit review still blocks retrieval
+- `ontological-soundness-bad-god-evidential-calibration-source-content-materialization-authorization-private-sensitive-risk-review.json` — pending private/sensitive content risk review for materialization batches
+- `ontological-soundness-bad-god-evidential-calibration-source-content-materialization-authorization-private-sensitive-risk-checks.json` — checks that private/sensitive content risk review still blocks retrieval
+- `ontological-soundness-bad-god-evidential-calibration-source-content-materialization-authorization-retrieval-scope-review.json` — pending retrieval scope review for materialization batches
+- `ontological-soundness-bad-god-evidential-calibration-source-content-materialization-authorization-retrieval-scope-checks.json` — checks that retrieval scope review still blocks retrieval
+- `ontological-soundness-bad-god-evidential-calibration-source-content-materialization-authorization-logging-hash-plan-review.json` — pending logging/hash plan review for materialization batches
+- `ontological-soundness-bad-god-evidential-calibration-source-content-materialization-authorization-logging-hash-plan-checks.json` — checks that logging/hash plan review still blocks retrieval
+- `ontological-soundness-bad-god-evidential-calibration-source-content-materialization-authorization-prerequisite-closure-matrix.json` — cross-prerequisite closure matrix for materialization authorization
+- `ontological-soundness-bad-god-evidential-calibration-source-content-materialization-authorization-prerequisite-closure-checks.json` — checks that prerequisite closure remains incomplete and non-proving
+- `ontological-soundness-bad-god-evidential-calibration-source-content-materialization-authorization-materialization-execution-gate.json` — execution gate denying materialization until prerequisites close
+- `ontological-soundness-bad-god-evidential-calibration-source-content-materialization-authorization-materialization-execution-gate-checks.json` — checks that materialization execution remains denied
+- `ontological-soundness-bad-god-evidential-calibration-source-content-materialization-future-command-manifest.json` — future source-fetch command templates kept non-executable
+- `ontological-soundness-bad-god-evidential-calibration-source-content-materialization-future-command-manifest-checks.json` — checks that future materialization commands remain non-executable
+- `ontological-soundness-bad-god-evidential-calibration-source-content-materialization-command-nonexecution-receipt.json` — receipt that future materialization commands were not executed
+- `ontological-soundness-bad-god-evidential-calibration-source-content-materialization-command-nonexecution-receipt-checks.json` — checks that no content, retrieval log, or hash outputs were written
+- `ontological-soundness-bad-god-evidential-calibration-source-content-materialization-command-output-gap-ledger.json` — ledger of missing content, retrieval log, and hash outputs per command
+- `ontological-soundness-bad-god-evidential-calibration-source-content-materialization-command-output-gap-checks.json` — checks that command output gaps remain open and non-proving
+- `ontological-soundness-bad-god-evidential-calibration-source-content-materialization-command-output-gap-closure-task-queue.json` — queued tasks for closing each missing command output gap
+- `ontological-soundness-bad-god-evidential-calibration-source-content-materialization-command-output-gap-closure-task-checks.json` — checks that gap-closure tasks remain blocked and non-proving
+- `ontological-soundness-bad-god-evidential-calibration-source-content-materialization-command-output-gap-closure-batch-plan.json` — command-level batch plan for queued gap-closure tasks
+- `ontological-soundness-bad-god-evidential-calibration-source-content-materialization-command-output-gap-closure-batch-checks.json` — checks that gap-closure batches remain blocked and non-proving
+- `ontological-soundness-bad-god-evidential-calibration-source-content-materialization-command-output-gap-closure-batch-execution-ledger.json` — ledger recording that gap-closure batch execution has not started
+- `ontological-soundness-bad-god-evidential-calibration-source-content-materialization-command-output-gap-closure-batch-execution-checks.json` — checks that no batch execution outputs were materialized
+- `ontological-soundness-bad-god-evidential-calibration-source-content-materialization-command-output-gap-closure-batch-execution-unblocker-matrix.json` — batch-level open prerequisites blocking execution
+- `ontological-soundness-bad-god-evidential-calibration-source-content-materialization-command-output-gap-closure-batch-execution-unblocker-checks.json` — checks that all execution unblockers remain open
+- `ontological-soundness-bad-god-evidential-calibration-source-content-materialization-command-output-gap-closure-batch-execution-unblocker-resolution-queue.json` — ordered queue for resolving open batch execution unblockers
+- `ontological-soundness-bad-god-evidential-calibration-source-content-materialization-command-output-gap-closure-batch-execution-unblocker-resolution-checks.json` — checks that unblocker resolution tasks remain open
+- `ontological-soundness-bad-god-evidential-calibration-source-content-materialization-command-output-gap-closure-batch-execution-unblocker-resolution-batch-plan.json` — prerequisite-type batch plan for resolving open unblockers
+- `ontological-soundness-bad-god-evidential-calibration-source-content-materialization-command-output-gap-closure-batch-execution-unblocker-resolution-batch-checks.json` — checks that unblocker resolution batches remain open
+- `ontological-soundness-bad-god-evidential-calibration-source-content-materialization-command-output-gap-closure-batch-execution-unblocker-resolution-batch-execution-ledger.json` — ledger recording that unblocker resolution batches have not started
+- `ontological-soundness-bad-god-evidential-calibration-source-content-materialization-command-output-gap-closure-batch-execution-unblocker-resolution-batch-execution-checks.json` — checks that no unblocker resolution was materialized
+- `ontological-soundness-resolution-worklist.json` — queued work items for the remaining soundness blocker
+- `ontological-soundness-resolution-worklist-checks.json` — checks that the worklist is not proof evidence
+- `ontological-soundness-resolution-batches.json` — executable batch plan for soundness-resolution work
+- `ontological-soundness-resolution-batch-checks.json` — checks that batches remain unexecuted plans
+- `ontological-soundness-batch-execution-ledger.json` — execution audit ledger for soundness batches
+- `ontological-soundness-batch-execution-checks.json` — checks that batch execution has not started
+- `attribute-coherence-ledger.json` — target-attribute tension ledger for the possibility premise
+- `attribute-coherence-checks.json` — coherence screening checks tied to the soundness gate
+- `coherent-conceivability-model.json` — candidate repair models for target-attribute tensions
+- `coherent-conceivability-checks.json` — local coherence checks for the conceivability stage
+- `metaphysical-possibility-bridge.json` — support and defeater routes for the conceivability-to-possibility bridge
+- `metaphysical-possibility-checks.json` — bridge checks that keep metaphysical possibility contested
+- `definition-smuggling-audit.json` — audit separating target definition from actuality claims
+- `definition-smuggling-checks.json` — checks for necessary-existence definition smuggling
+- `evidential-evil-probability-audit.json` — probability audit for evidential evil pressure
+- `evidential-evil-likelihood-ledger.json` — candidate interval likelihoods for evidential evil
+- `evidential-evil-dependence-model.json` — dependence and sensitivity model for evidential evil
+- `evidential-evil-case-corpus.json` — mapped case families for evil and hiddenness calibration
+- `evidential-evil-reviewed-case-records.json` — source-backed records for case families
+- `evidential-evil-primary-dataset-selection.json` — official and peer-reviewed dataset candidates
+- `evidential-evil-dataset-ingestion-manifest.json` — planned fetch, hash, parse, and privacy gates
+- `evidential-evil-license-privacy-review.json` — terms and privacy review gate for dataset ingestion
+- `evidential-evil-attribution-template-ledger.json` — draft attribution text for selected datasets
+- `evidential-evil-attribution-template-checks.json` — checks that attribution remains non-authorizing
+- `evidential-evil-license-decision-packet.json` — candidate source-specific reuse decisions
+- `evidential-evil-license-decision-checks.json` — checks that reuse decisions remain non-authorizing
+- `evidential-evil-source-acquisition-hash-runbook.json` — acquisition, hash, log, and prune command templates
+- `evidential-evil-source-acquisition-hash-runbook-checks.json` — checks that acquisition remains unexecuted
+- `evidential-evil-suppression-report-template.json` — publication suppression report templates
+- `evidential-evil-suppression-report-template-checks.json` — checks that suppression reports remain unfilled
+- `evidential-evil-source-version-hash-preflight.json` — candidate source version locators and hash targets
+- `evidential-evil-source-version-hash-preflight-checks.json` — checks that source files and hashes remain open
+- `evidential-evil-derived-aggregate-schema.json` — candidate aggregate table schemas and allowlists
+- `evidential-evil-derived-aggregate-schema-checks.json` — checks that schemas remain unmaterialized
+- `evidential-evil-microdata-minimization-policy.json` — policy blocking raw microdata retention
+- `evidential-evil-microdata-minimization-checks.json` — checks that minimization remains non-authorizing
+- `evidential-evil-license-privacy-checks.json` — checks that reuse authorization remains open
+- `evidential-evil-dataset-ingestion-checks.json` — checks that ingestion remains unexecuted
+- `evidential-evil-primary-dataset-selection-checks.json` — checks for selected-source coverage
+- `evidential-evil-empirical-expansion-ledger.json` — empirical record classes still needing data ingestion
+- `evidential-evil-empirical-expansion-checks.json` — checks for empirical expansion coverage and open ingestion
+- `evidential-evil-reviewed-case-records-checks.json` — checks for case-record citation coverage
+- `evidential-evil-case-corpus-checks.json` — checks for case-family dimension and cluster coverage
+- `evidential-evil-calibration-ledger.json` — candidate cluster-weight and dependence-strength calibration
+- `evidential-evil-calibration-checks.json` — checks for open calibration requirements
+- `evidential-evil-dependence-checks.json` — checks that block naive independent aggregation
+- `evidential-evil-likelihood-checks.json` — checks for prior, likelihood, and response-cost intervals
+- `evidential-evil-probability-checks.json` — checks that keep interval likelihoods non-decisive
+- `evil-hiddenness-moral-pressure-audit.json` — audit for evil and hiddenness pressure on perfect goodness
+- `evil-hiddenness-moral-pressure-checks.json` — checks for unresolved moral-pressure responses
+- `moral-perfection-grounding-audit.json` — audit for circularity in moral-perfection grounding
+- `moral-perfection-grounding-checks.json` — checks for unresolved perfect-goodness grounding
+- `positive-grounding-audit.json` — audit for non-arbitrary positive-property grounding
+- `positive-grounding-checks.json` — checks for unresolved grounding and anti-ad-hoc tests
+- `positive-property-filter-audit.json` — audit for the bad-god positive-property filter
+- `positive-property-filter-checks.json` — checks for unresolved positive-property grounding
+- `rival-necessary-parity-audit.json` — rival necessary-concept parity comparison
+- `rival-necessary-parity-checks.json` — checks for unresolved uniqueness filters
+- `possible-necessary-existence-bridge.json` — support and defeater routes before the S5 bridge
+- `possible-necessary-existence-checks.json` — checks that keep possible necessary existence contested
+- `possibility-premise-ladder.json` — stage decomposition of the possibility premise
+- `possibility-premise-checks.json` — checks for blocked bridges in the possibility ladder
+- `teleological-bayes-model.json` — explicit fine-tuning Bayesian model
+- `teleological-bayes-checks.json` — sensitivity and model-completeness checks
+- `cosmological-psr-model.json` — PSR variants, countermodels, and bridge requirements
+- `cosmological-psr-checks.json` — PSR taxonomy and partial-bridge checks
+- `evil-hiddenness-constraints.json` — evil, hiddenness, and diversity constraints
+- `evil-hiddenness-checks.json` — constraint coverage and retained-risk checks
+- `frontier.json` — missing gates and next machine steps
+- `formal-obligations.json` — formal validity, soundness, model-check, and counterargument gates
+- `proof-readiness.json` — whether a proof claim is allowed under the open gates
+- `proof-assistant-skeletons/GodProof_Obligations.thy` — Isabelle/HOL starting scaffold
+- `sources.jsonl` and `transcript.jsonl` — source ledger and full event log
+
+It does not claim that God is proven; it records which assumptions must be
+formalized, verified, or rejected to move closer to proof.

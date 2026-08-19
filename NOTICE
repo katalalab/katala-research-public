@@ -1,0 +1,60 @@
+katala-research
+Copyright (c) 2026 Nicolas Ogoshi
+
+This product derives from the third-party works listed first, and from the
+published evaluation literature listed under "Creativity scoring".
+
+---
+
+## dzhng/deep-research
+
+The iterative research strategy in `src/katala_research/orchestrator/` (breadth /
+depth expansion and follow-up question generation) was distilled from the design
+of dzhng/deep-research. No source code was copied verbatim.
+
+- Source: https://github.com/dzhng/deep-research
+- License: MIT
+
+---
+
+## DeepResearch Bench
+
+`src/katala_research/bench/tasks/drb-subset-5.json` is a five-task smoke subset
+adapted from DeepResearch Bench. Task prompts were rewritten and mixed with
+domain-specific queries; it is not the published benchmark and must not be
+reported as a DRB score.
+
+- Source: https://deepresearch-bench.github.io/
+- Use: adapted task descriptions only
+
+---
+
+## Creativity scoring — literature the axes are derived from
+
+The candidate score in `src/katala_research/creativity/score.py` and the
+8-dimension report rubric in `src/katala_research/creativity/rubric.py` are this
+repository's own formulation. No third-party rubric, sheet, or scoring instrument
+is reproduced. Each axis is derived from a published evaluation concept, cited in
+the module docstring where it is used:
+
+- Zhai, Cooper & Lafferty (SIGIR 2003) — subtopic retrieval / S-recall
+- Clarke et al. (SIGIR 2008) — novelty and diversity, alpha-nDCG
+- Zhang, Callan & Minka (SIGIR 2002) — novelty and redundancy detection
+- Ziegler, McNee, Konstan & Lausen (WWW 2005) — topic diversification,
+  intra-list diversity
+- Vrijenhoek et al. (2021) — RADio, viewpoint diversity in news recommendation
+- Saracevic (2007) — relevance manifestations, situational relevance / utility
+- Rashkin et al. (Computational Linguistics 2023) — Attributable to Identified
+  Sources
+- Boden, *The Creative Mind* (2nd ed., 2004) — combinational creativity
+- Grice, "Logic and Conversation" (1975) — maxim of quantity
+
+These are cited as prior art for the ideas, not copied text. `content_gap` in
+`score.py` has no literature basis and is marked in the source as an own axis.
+
+---
+
+## Not bundled
+
+`vendor/deep-research/` and `vendor/searxng-docker/` are referenced by the docs
+but are not distributed with this repository. See README for how to obtain them.
