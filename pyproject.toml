@@ -5,7 +5,7 @@ description = "Anti-filter-bubble deep-research agent with creativity-aware scor
 readme = "README.md"
 requires-python = ">=3.11"
 license = { text = "MIT" }
-authors = [{ name = "Nicolas Ogoshi" }]
+authors = [{ name = "Nicolas0315" }]
 dependencies = [
   "anthropic>=0.39.0",
   "httpx>=0.27.0",
