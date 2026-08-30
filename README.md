@@ -85,3 +85,13 @@ See [docs/godproof.md](docs/godproof.md) for its ~40 output files.
 ## License
 
 MIT.
+
+- [Contributing](CONTRIBUTING.md)
+
+- [Changes and releases](CHANGELOG.md)
+
+- [Lifecycle](CHANGELOG.md)
+
+- [Automation](.github/workflows/)
+
+- [Repository hygiene](.gitignore)
