@@ -90,8 +90,6 @@ MIT.
 
 - [Changes and releases](CHANGELOG.md)
 
-- [Lifecycle](CHANGELOG.md)
-
 - [Automation](.github/workflows/)
 
 - [Repository hygiene](.gitignore)
