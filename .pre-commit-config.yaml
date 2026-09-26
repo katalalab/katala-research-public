@@ -1,0 +1,13 @@
+# repo-standardize が置いた標準の安全チェック(このリポは CI を持たないのでローカルで走らせる)。
+# 有効化: brew install pre-commit && pre-commit install --hook-type pre-commit --hook-type pre-push
+repos:
+  - repo: https://github.com/gitleaks/gitleaks
+    rev: v8.30.1
+    hooks:
+      - id: gitleaks
+  - repo: https://github.com/semgrep/pre-commit
+    rev: v1.178.0
+    hooks:
+      - id: semgrep
+        args: ["--config", "p/default", "--error", "--skip-unknown-extensions", "--metrics=off"]
+        stages: [pre-push]
