@@ -3,6 +3,7 @@ from __future__ import annotations
 import re
 from pathlib import Path
 
+import pytest
 import yaml
 
 
@@ -20,8 +21,13 @@ def _pinned_step(steps: list[dict], action: str) -> dict:
     matches = [step for step in steps if str(step.get("uses", "")).partition("@")[0] == action]
     assert len(matches) == 1, f"expected exactly one {action} step"
     ref = matches[0]["uses"].partition("@")[2]
-    assert SHA_PIN.match(ref), f"{action} must be pinned to a full commit SHA, got {ref!r}"
+    assert SHA_PIN.fullmatch(ref), f"{action} must be pinned to a full commit SHA, got {ref!r}"
     return matches[0]
+
+
+def test_ci_rejects_sha_with_trailing_newline() -> None:
+    with pytest.raises(AssertionError, match="must be pinned"):
+        _pinned_step([{"uses": "actions/checkout@" + "a" * 40 + "\n"}], "actions/checkout")
 
 
 def test_python_runtime_is_pinned_for_ci() -> None:
