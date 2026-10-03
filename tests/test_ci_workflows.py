@@ -1,23 +1,40 @@
 from __future__ import annotations
 
+import re
 from pathlib import Path
 
+import pytest
 import yaml
 
 
 ROOT = Path(__file__).resolve().parents[1]
 CI = ROOT / ".github" / "workflows" / "ci.yml"
+SHA_PIN = re.compile(r"^[0-9a-f]{40}$")
 
 
 def _workflow() -> dict:
     return yaml.safe_load(CI.read_text(encoding="utf-8"))
 
 
+def _pinned_step(steps: list[dict], action: str) -> dict:
+    """Return the step using ``action``, asserting it is pinned to a full commit SHA."""
+    matches = [step for step in steps if str(step.get("uses", "")).partition("@")[0] == action]
+    assert len(matches) == 1, f"expected exactly one {action} step"
+    ref = matches[0]["uses"].partition("@")[2]
+    assert SHA_PIN.fullmatch(ref), f"{action} must be pinned to a full commit SHA, got {ref!r}"
+    return matches[0]
+
+
+def test_ci_rejects_sha_with_trailing_newline() -> None:
+    with pytest.raises(AssertionError, match="must be pinned"):
+        _pinned_step([{"uses": "actions/checkout@" + "a" * 40 + "\n"}], "actions/checkout")
+
+
 def test_python_runtime_is_pinned_for_ci() -> None:
     assert (ROOT / ".python-version").read_text(encoding="utf-8").strip() == "3.11"
 
     steps = _workflow()["jobs"]["verify"]["steps"]
-    setup_python = next(step for step in steps if step.get("uses") == "actions/setup-python@v6")
+    setup_python = _pinned_step(steps, "actions/setup-python")
 
     assert setup_python["with"]["python-version-file"] == ".python-version"
 
@@ -28,9 +45,9 @@ def test_ci_uses_locked_uv_verify_entrypoint() -> None:
 
     assert workflow["permissions"] == "read-all"
     assert workflow["jobs"]["verify"]["runs-on"] == "ubuntu-latest"
-    assert any(step.get("uses") == "actions/checkout@v7" for step in steps)
+    _pinned_step(steps, "actions/checkout")
 
-    setup_uv = next(step for step in steps if step.get("uses") == "astral-sh/setup-uv@v8")
+    setup_uv = _pinned_step(steps, "astral-sh/setup-uv")
     assert setup_uv["with"]["enable-cache"] is True
     assert "pyproject.toml" in setup_uv["with"]["cache-dependency-glob"]
     assert "uv.lock" in setup_uv["with"]["cache-dependency-glob"]
