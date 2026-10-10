@@ -18,7 +18,7 @@
 - CI pins actions to immutable commit SHAs:
   - `actions/checkout`: `3d3c42e5aac5ba805825da76410c181273ba90b1` (v7.0.1).
   - `actions/setup-python`: `5fda3b95a4ea91299a34e894583c3862153e4b97` (v7.0.0).
-  - `astral-sh/setup-uv`: `11f9893b081a58869d3b5fccaea48c9e9e46f990` (v8.3.2).
+  - `astral-sh/setup-uv`: `c18668ad3cf93ea998bef934396af7bb5c839dc7` (v10.2.0).
 - Pull requests run verification once; push verification targets `main` to avoid
   duplicate checks on feature branches.
 - Optional dependency minimums and the lockfile use `sentence-transformers` 5.6.0
