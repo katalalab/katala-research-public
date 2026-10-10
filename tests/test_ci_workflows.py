@@ -30,6 +30,12 @@ def test_ci_rejects_sha_with_trailing_newline() -> None:
         _pinned_step([{"uses": "actions/checkout@" + "a" * 40 + "\n"}], "actions/checkout")
 
 
+def test_pr_verification_runs_once_and_push_verifies_main() -> None:
+    events = _workflow()[True]
+    assert events["push"]["branches"] == ["main"]
+    assert events["pull_request"]["branches"] == ["main"]
+
+
 def test_python_runtime_is_pinned_for_ci() -> None:
     assert (ROOT / ".python-version").read_text(encoding="utf-8").strip() == "3.11"
 
