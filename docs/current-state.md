@@ -1,6 +1,6 @@
 # Katala Research Current State
 
-- Updated: 2026-06-29 JST
+- Updated: 2026-10-10 JST
 - Repo: `katala-research` (this repository)
 - Purpose: Anti-filter-bubble deep-research agent with creativity-aware scoring.
 
@@ -15,7 +15,16 @@
 ## CI
 
 - GitHub Actions entrypoint: `.github/workflows/ci.yml`.
-- CI uses `actions/checkout@v7`, `actions/setup-python@v6`, and `astral-sh/setup-uv@v8`.
+- CI pins actions to immutable commit SHAs:
+  - `actions/checkout`: `3d3c42e5aac5ba805825da76410c181273ba90b1` (v7.0.1).
+  - `actions/setup-python`: `5fda3b95a4ea91299a34e894583c3862153e4b97` (v7.0.0).
+  - `astral-sh/setup-uv`: `11f9893b081a58869d3b5fccaea48c9e9e46f990` (v8.3.2).
+- Pull requests run verification once; push verification targets `main` to avoid
+  duplicate checks on feature branches.
+- Optional dependency minimums and the lockfile use `sentence-transformers` 5.6.0
+  and `pypdf` 6.19.0 to address the currently reported security advisories.
+- The optional embedding dependency tree also locks `fsspec` to 2026.6.0;
+  the exported dependency set passes `pip-audit` without installing model weights.
 - CI resolves Python from `.python-version`, dependencies from `uv.lock`, then runs `scripts/verify.sh`.
 - Workflow drift is covered by `tests/test_ci_workflows.py`.
 
@@ -25,7 +34,7 @@
 - Live API research, scraping, and session-materializing smoke flows are outside default verification.
 - Stub/live research runs can create session output under `$KATALA_SESSIONS_DIR` or `~/.local/share/katala-research/sessions/`; run them only when explicitly required.
 
-## Last Local Verification
+## Historical Local Verification (2026-06-29 JST)
 
 - `uv sync --locked --extra dev`: passed on 2026-06-29 JST.
 - `uv run --locked --extra dev pytest -q`: `154 passed`.

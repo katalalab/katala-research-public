@@ -16,8 +16,8 @@ dependencies = [
 ]
 
 [project.optional-dependencies]
-embed = ["sentence-transformers>=2.7.0"]
-scrape = ["scrapling>=0.2.0", "pypdf>=4.0.0"]
+embed = ["sentence-transformers>=5.6.0"]
+scrape = ["scrapling>=0.2.0", "pypdf>=6.19.0"]
 dev = ["pytest>=8.0.0", "pytest-asyncio>=0.23.0"]
 
 [project.scripts]
